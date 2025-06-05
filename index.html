@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homicide Reports Analysis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #0a0e17, #1c2526);
+            color: #d4d4d8;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: rgba(10, 14, 23, 0.95);
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #60a5fa;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #d4d4d8;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        nav a:hover {
+            background: #60a5fa;
+            color: #0a0e17;
+            box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
+        }
+
+        main {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        main h2 {
+            font-size: 2rem;
+            color: #60a5fa;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        main p {
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+            text-align: justify;
+            line-height: 1.7;
+        }
+
+        .highlight {
+            color: #93c5fd;
+            font-weight: 500;
+        }
+
+        .cta {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.8rem 2rem;
+            background: #60a5fa;
+            color: #0a0e17;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(96, 165, 250, 0.3);
+        }
+
+        .cta:hover {
+            background: #3b82f6;
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .neural-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.08;
+            z-index: -1;
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"%3E%3Cg fill="none" stroke="%23ffffff" stroke-width="0.8" opacity="0.3"%3E%3Ccircle cx="400" cy="400" r="40"/%3E%3Ccircle cx="400" cy="400" r="80"/%3E%3Ccircle cx="400" cy="400" r="120"/%3E%3Cline x1="400" y1="280" x2="320" y2="200"/%3E%3Cline x1="400" y1="280" x2="480" y2="200"/%3E%3Cline x1="400" y1="520" x2="320" y2="600"/%3E%3Cline x1="400" y1="520" x2="480" y2="600"/%3E%3C/g%3E%3C/svg%3E') repeat;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 1rem;
+            text-align: center;
+            background: rgba(10, 14, 23, 0.95);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        footer span {
+            color: #60a5fa;
+        }
+    </style>
+</head>
+<body>
+    <div class="neural-overlay"></div>
+    <header>
+        <h1>Homicide Reports Analysis (1980-2014)</h1>
+        <nav>
+            <a href="/dataset">Dataset Selection</a>
+            <a href="/classification">Classification</a>
+            <a href="/clustering">Clustering</a>
+            <a href="/performance">Performance Evaluation</a>
+            <a href="/visualization">Visualization</a>
+            <a href="/comparison">Comparison</a>
+            <a href="/improvement">Improvement Efforts</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Homicide Dataset Analysis</h2>
+        <p>This project analyzes the <span class="highlight">Homicide Reports dataset (1980-2014)</span> using advanced <span class="highlight">machine learning techniques</span>. The dataset, containing over 638,000 records, is used to classify homicides based on the weapon type: <span class="highlight">Firearm</span>, <span class="highlight">Knife</span>, <span class="highlight">Blunt Object</span>, or <span class="highlight">Unknown</span>.</p>
+        <p>Implemented algorithms include <span class="highlight">K-Nearest Neighbors (KNN)</span>, <span class="highlight">Naïve Bayes</span>, <span class="highlight">K-Means Clustering</span>, and <span class="highlight">Random Forest</span>. Each section provides detailed <span class="highlight">performance metrics</span> (Accuracy, F1 Score, Precision, Recall) and visualizations, including <span class="highlight">ROC curves</span> and metric comparison plots, to evaluate model effectiveness.</p>
+        <p>Explore the <a href="/comparison" class="cta">Comparison</a> page for a side-by-side evaluation of all models, or visit the <a href="/improvement" class="cta">Improvement Efforts</a> page to see how techniques like SMOTE and feature selection enhance performance. This interface, with its <span class="highlight">neural network-inspired design</span>, offers an engaging platform for academic and professional exploration.</p>
+    </main>
+    <footer>
+        Developed by <span>Data Science Researchers</span> | Powered by Machine Learning
+    </footer>
+</body>
+</html>

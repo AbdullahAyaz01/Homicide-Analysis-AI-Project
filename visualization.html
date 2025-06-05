@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualization</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #0a0e17, #1c2526);
+            color: #d4d4d8;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: rgba(10, 14, 23, 0.95);
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #60a5fa;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #d4d4d8;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        nav a:hover {
+            background: #60a5fa;
+            color: #0a0e17;
+            box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
+        }
+
+        main {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        main h2 {
+            font-size: 2rem;
+            color: #60a5fa;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        main h3 {
+            font-size: 1.5rem;
+            color: #93c5fd;
+            margin: 1rem 0;
+        }
+
+        main p {
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+            text-align: justify;
+            line-height: 1.7;
+        }
+
+        .highlight {
+            color: #93c5fd;
+            font-weight: 500;
+        }
+
+        .cta {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.8rem 2rem;
+            background: #60a5fa;
+            color: #0a0e17;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(96, 165, 250, 0.3);
+        }
+
+        .cta:hover {
+            background: #3b82f6;
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 1rem 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .image-caption {
+            font-size: 0.9rem;
+            color: #a1a1aa;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .neural-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.08;
+            z-index: -1;
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"%3E%3Cg fill="none" stroke="%23ffffff" stroke-width="0.8" opacity="0.3"%3E%3Ccircle cx="400" cy="400" r="40"/%3E%3Ccircle cx="400" cy="400" r="80"/%3E%3Ccircle cx="400" cy="400" r="120"/%3E%3Cline x1="400" y1="280" x2="320" y2="200"/%3E%3Cline x1="400" y1="280" x2="480" y2="200"/%3E%3Cline x1="400" y1="520" x2="320" y2="600"/%3E%3Cline x1="400" y1="520" x2="480" y2="600"/%3E%3C/g%3E%3C/svg%3E') repeat;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 1rem;
+            text-align: center;
+            background: rgba(10, 14, 23, 0.95);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        footer span {
+            color: #60a5fa;
+        }
+    </style>
+</head>
+<body>
+    <div class="neural-overlay"></div>
+    <header>
+        <h1>Visualization</h1>
+        <nav>
+            <a href="/dataset">Dataset Selection</a>
+            <a href="/classification">Classification</a>
+            <a href="/clustering">Clustering</a>
+            <a href="/performance">Performance Evaluation</a>
+            <a href="/visualization">Visualization</a>
+            <a href="/comparison">Comparison</a>
+            <a href="/improvement">Improvement Efforts</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Model Performance Visualizations</h2>
+        <p>This section presents visualizations for the <span class="highlight">Homicide Reports dataset (1980-2014)</span> analysis, evaluating the performance of <span class="highlight">K-Nearest Neighbors (KNN)</span>, <span class="highlight">Naïve Bayes</span>, and <span class="highlight">Random Forest</span> models in classifying weapon types (<span class="highlight">Firearm</span>, <span class="highlight">Knife</span>, <span class="highlight">Blunt Object</span>, <span class="highlight">Unknown</span>). The visualizations include <span class="highlight">confusion matrices</span>, <span class="highlight">ROC curves</span>, and a <span class="highlight">metrics comparison</span> to highlight model strengths and weaknesses.</p>
+        
+        <h3>Confusion Matrices</h3>
+        <p>Confusion matrices show the classification accuracy for each weapon type, with true labels on the y-axis and predicted labels on the x-axis.</p>
+        <img src="{{ url_for('static', filename='cm_knn.png') }}" alt="KNN Confusion Matrix">
+        <p class="image-caption">Confusion matrix for the KNN model, showing classification performance across weapon types.</p>
+        <img src="{{ url_for('static', filename='cm_naive_bayes.png') }}" alt="Naive Bayes Confusion Matrix">
+        <p class="image-caption">Confusion matrix for the Naïve Bayes model, highlighting prediction patterns.</p>
+        <img src="{{ url_for('static', filename='cm_random_forest.png') }}" alt="Random Forest Confusion Matrix">
+        <p class="image-caption">Confusion matrix for the Random Forest model, demonstrating high accuracy for key classes.</p>
+        
+        <h3>ROC Curves</h3>
+        <p>Receiver Operating Characteristic (ROC) curves illustrate the trade-off between true positive and false positive rates for each class, with Area Under the Curve (AUC) scores indicating model performance.</p>
+        <img src="{{ url_for('static', filename='roc_knn.png') }}" alt="KNN ROC Curves">
+        <p class="image-caption">ROC curves for the KNN model, showing AUC scores for each weapon type.</p>
+        <img src="{{ url_for('static', filename='roc_naive_bayes.png') }}" alt="Naive Bayes ROC Curves">
+        <p class="image-caption">ROC curves for the Naïve Bayes model, indicating classification capability.</p>
+        <img src="{{ url_for('static', filename='roc_random_forest.png') }}" alt="Random Forest ROC Curves">
+        <p class="image-caption">ROC curves for the Random Forest model, with high AUC scores reflecting strong performance.</p>
+        
+        <h3>Metrics Comparison</h3>
+        <p>The bar plot compares <span class="highlight">Accuracy</span>, <span class="highlight">F1 Score</span>, <span class="highlight">Precision</span>, and <span class="highlight">Recall</span> across all models, providing a comprehensive view of their performance.</p>
+        <img src="{{ url_for('static', filename='performance_metrics.png') }}" alt="Performance Metrics">
+        <p class="image-caption">Comparison of performance metrics (Accuracy, F1 Score, Precision, Recall) for KNN, Naïve Bayes, and Random Forest.</p>
+        
+        <a href="/" class="cta">Back to Home</a>
+    </main>
+    <footer>
+        Developed by <span>Data Science Researchers</span> | Powered by Machine Learning
+    </footer>
+</body>
+</html>
